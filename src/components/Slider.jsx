@@ -1,4 +1,3 @@
-import React from 'react'
 import React, { useRef, useState } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 
@@ -8,15 +7,16 @@ import 'swiper/css/pagination';
 import { Pagination } from 'swiper/modules';
 import Card from './Card';
 
-const Slider = (data) => {
+const Slider = ({data}) => {
+    console.log(data);
   return (
-    <div>
+    <div className='relative'>
         <Swiper
         slidesPerView={1}
         spaceBetween={10}
-        pagination={{
-          clickable: true,
-        }}
+        // pagination={{
+        //   clickable: true,
+        // }}
         breakpoints={{
           640: {
             slidesPerView: 2,
@@ -27,8 +27,8 @@ const Slider = (data) => {
             spaceBetween: 40,
           },
           1024: {
-            slidesPerView: 5,
-            spaceBetween: 50,
+            slidesPerView: 6,
+            spaceBetween: 40,
           },
         }}
         modules={[Pagination]}

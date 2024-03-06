@@ -14,7 +14,7 @@ const Banner = () => {
     const { data: categor,  } = UseGetCategory()
     console.log(categor);
   return (
-    <div className='w-full h-[300px]'>
+    <div className='w-full'>
         <Swiper
         spaceBetween={30}
         centeredSlides={true}
