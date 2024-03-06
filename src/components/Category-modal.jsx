@@ -14,11 +14,11 @@ export default function CategoryModal(props) {
       <div className="fixed inset-0 flex w-screen bg-black/60 m-auto items-center justify-center p-4 ">
         <Dialog.Panel className="w-[700px] rounded bg-white">
           <Dialog.Title>
-            <div className='flex flex-wrap justify-between px-[50px] py-[30px] '>
+            <div className='flex flex-wrap justify-between gap-y-5 px-[55px] py-[40px] '>
                 {
                     data?.map(item => (
                         <div className='w-[130px]'>
-                            <img className='' src={item.img} alt="" />
+                            <img src={item.img} alt="" />
                             <h3 className='text-center'>{item.title}</h3>
                         </div>
                     ))

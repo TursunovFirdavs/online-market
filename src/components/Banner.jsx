@@ -37,11 +37,12 @@ const Banner = () => {
         
         
       </Swiper>
-        <div className='flex justify-between max-w-[1400px] m-auto my-8'>
-        {
+        <div className='flex gap-6 my-8 overflow-auto categry-scroll pl-[43px]'>
+        { 
           category?.map(item => (
-            <Link>
-              <img src={item.img} alt="" />
+            <Link className='flex items-center gap-x-4 bg-[#F6F6F6] min-w-[220px] p-2 '>
+              <img className='w-[90px]' src={item.img} alt="" />
+              <h3 className='text-center font-bold'>{item.title}</h3>
             </Link>
           ))
         }
