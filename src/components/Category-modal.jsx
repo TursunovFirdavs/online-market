@@ -1,12 +1,12 @@
 import { useState } from 'react'
 import { Dialog } from '@headlessui/react'
-import { UeseGetCategory } from '../service/query/useGetCategory'
+import { UseGetCategory } from '../service/query/useGetCategory'
 
 
 export default function CategoryModal(props) {
 //   let [isOpen, setIsOpen] = useState(true)
   const {isOpen, selectedItem, handleClose} = props
-  const { data } = UeseGetCategory()
+  const { data } = UseGetCategory()
 
 
   return (
@@ -19,7 +19,7 @@ export default function CategoryModal(props) {
                     data?.map(item => (
                         <div className='w-[130px]'>
                             <img src={item.img} alt="" />
-                            <h3 className='text-center'>{item.title}</h3>
+                            <h3 className='text-center font-medium'>{item.title}</h3>
                         </div>
                     ))
                 }

@@ -6,13 +6,13 @@ import 'swiper/css/pagination';
 import 'swiper/css/navigation';
 
 import { Autoplay, Pagination, Navigation } from 'swiper/modules';
-import { UeseGetCategory } from '../service/query/useGetCategory';
+import { UseGetCategory } from '../service/query/useGetCategory';
 import { Link } from 'react-router-dom';
 
 const Banner = () => {
     const { data, isLoading } = useGetBanner()
-    const { data: category,  } = UeseGetCategory()
-    console.log(data);
+    const { data: categor,  } = UseGetCategory()
+    console.log(categor);
   return (
     <div className='w-full h-[300px]'>
         <Swiper
@@ -39,10 +39,10 @@ const Banner = () => {
       </Swiper>
         <div className='flex gap-6 my-8 overflow-auto categry-scroll pl-[43px]'>
         { 
-          category?.map(item => (
+          categor?.map(item => (
             <Link className='flex items-center gap-x-4 bg-[#F6F6F6] min-w-[220px] p-2 '>
               <img className='w-[90px]' src={item.img} alt="" />
-              <h3 className='text-center font-bold'>{item.title}</h3>
+              <h3 className='text-center font-semibold'>{item.title}</h3>
             </Link>
           ))
         }

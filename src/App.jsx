@@ -6,7 +6,7 @@ import Card from './pages/cart/Card'
 
 function App() {
 
-  fetch('http://localhost:3000/banner').then(res => res.json()).then(data => console.log(data))
+  // fetch('http://localhost:3000/banner').then(res => res.json()).then(data => console.log(data))
 
   return (
     <>
