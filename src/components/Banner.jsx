@@ -40,7 +40,7 @@ const Banner = () => {
         <div className='flex gap-6 my-8 overflow-auto categry-scroll pl-[43px]'>
         { 
           categor?.map(item => (
-            <Link className='flex items-center gap-x-4 bg-[#F6F6F6] min-w-[220px] p-2 '>
+            <Link to={`/category/${item.datakey}`} className='flex items-center gap-x-4 bg-[#F6F6F6] min-w-[220px] p-2 '>
               <img className='w-[90px]' src={item.img} alt="" />
               <h3 className='text-center font-semibold'>{item.title}</h3>
             </Link>

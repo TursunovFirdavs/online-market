@@ -1,16 +1,18 @@
 import { Dialog } from '@headlessui/react'
-
+import { useState } from 'react';
+import { CgClose } from "react-icons/cg";
 
 export default function SingleProductModal(props) {
-  const {isOpen, selectedItem, handleClose} = props
+    const {isOpen, selectedItem, handleClose} = props
 
 
   return (
     <Dialog open={isOpen} onClose={handleClose} className="relative z-50">
       <div className="fixed inset-0 flex w-screen bg-black/60 m-auto items-center justify-center p-4 ">
-        <Dialog.Panel className="w-[900px] rounded bg-white">
+        <Dialog.Panel className="w-[850px] rounded relative bg-white">
           <Dialog.Title>
-            <div className='flex items-center gap-x-5 px-[55px] py-[40px] '>
+            <div className='flex items-center justify-between px-[40px] py-[45px] '>
+            <button onClick={handleClose} className='absolute top-3 right-4'><CgClose className='text-xl' /></button>
                 <img className='w-[320px]' src={selectedItem?.img} alt="" />
                 <div className='w-[430px]'>
                     <h2 className='text-3xl font-bold'>{selectedItem?.title}</h2>

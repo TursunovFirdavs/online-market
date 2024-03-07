@@ -3,6 +3,7 @@ import './App.css'
 import Home from './pages/home/Home'
 import Navbar from './components/Navbar'
 import Card from './pages/cart/Cart'
+import Category from './pages/category/Category'
 
 function App() {
 
@@ -13,7 +14,9 @@ function App() {
       <Navbar/>
       <Routes>
         <Route path='/' element={<Home/>} />
+        <Route path='/category/:name' element={<Category/>} />
         <Route path='/cart' element={<Card/>} />
+        <Route path='/liked' />
       </Routes>
     </>
   )

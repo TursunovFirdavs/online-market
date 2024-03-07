@@ -26,7 +26,7 @@ const Card = (product) => {
 
     // console.log(discount);
     return (
-        <div className='bg-white pl-2 pr-3 relative'>
+        <div className='bg-white pl-2 pr-3 relative w-[200px]'>
             {like.findIndex(item => item.id == product.id) == -1 ?
                 <FiHeart className='absolute right-0 text-xl' onClick={() => dispatch(liked(product))} />
                 :

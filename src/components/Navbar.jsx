@@ -18,7 +18,7 @@ const Navbar = () => {
     return (
         <div>
             <nav className='flex items-center px-10 py-5 gap-[55px]'>
-                <img src={Logo} alt="" className='px-6' />
+                <Link to={'/'}><img src={Logo} alt="" className='px-6' /></Link>
                 <div className='flex gap-[32px] flex-1'>
                     <div onClick={() => setOpenDialog(true)} className='flex items-center gap-1 cursor-pointer bg-[#FEEE00] py-2  pl-3 pr-10 '>
                         <IoIosMenu className='text-xl' />
@@ -34,11 +34,11 @@ const Navbar = () => {
                         <MdOutlineAccountCircle className='text-xl' />
                         <p>Войти</p>
                     </Link>
-                    <Link className='flex flex-col items-center'>
+                    <Link to={'/liked'} className='flex flex-col items-center'>
                         <FaRegHeart className='text-xl' />
                         <p>Избранное</p>
                     </Link>
-                    <Link className='flex flex-col items-center relative'>
+                    <Link to={'/cart'} className='flex flex-col items-center relative'>
                         <BsCart3 className='text-xl' />
                         <p>Корзина</p>
                         <div className='absolute top-[-5.8px] right-3 bg-red-600 text-white text-[13px] w-4 h-4 rounded-full flex items-center justify-center'>3</div>

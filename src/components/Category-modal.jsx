@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { Dialog } from '@headlessui/react'
 import { UseGetCategory } from '../service/query/useGetCategory'
+import { Link } from 'react-router-dom'
 
 
 export default function CategoryModal(props) {
@@ -17,10 +18,10 @@ export default function CategoryModal(props) {
             <div className='flex flex-wrap justify-between gap-y-5 px-[55px] py-[40px] '>
                 {
                     data?.map(item => (
-                        <div className='w-[130px]'>
+                        <Link onClick={handleClose} to={`/category/${item.datakey}`} className='w-[130px]'>
                             <img src={item.img} alt="" />
                             <h3 className='text-center font-medium'>{item.title}</h3>
-                        </div>
+                        </Link>
                     ))
                 }
             </div>
