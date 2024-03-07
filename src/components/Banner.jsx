@@ -11,8 +11,8 @@ import { Link } from 'react-router-dom';
 
 const Banner = () => {
     const { data, isLoading } = useGetBanner()
-    const { data: categor,  } = UseGetCategory()
-    console.log(categor);
+    const { data: categor,  } = UseGetCategory('category')
+    console.log(data);
   return (
     <div className='w-full'>
         <Swiper
@@ -31,7 +31,7 @@ const Banner = () => {
       >
         {
             data?.map(item => (
-                <SwiperSlide><img src={item.img} alt="" className='block w-full h-[300px] bg-cover bg-center' /></SwiperSlide>
+                <SwiperSlide key={item.img}><img src={item.img} alt="" className='block w-full h-[300px] bg-cover bg-center' /></SwiperSlide>
             ))
         }
         
