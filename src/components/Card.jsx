@@ -1,19 +1,27 @@
 import React from 'react'
 import { FiHeart } from "react-icons/fi";
+import { FcLike } from "react-icons/fc";
 import { BsCart3 } from "react-icons/bs";
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { dislike, liked } from '../redux/reducers/like';
 
 
 
 const Card = (product) => {
     const {like} = useSelector(state => state.like)
+    const dispatch = useDispatch()
     console.log(like);
 
-    const discount = (product.price / 100) * (100 - product.discount)
+
+    const discounted = (product.price / 100) * (100 - product.discount)
     // console.log(discount);
     return (
         <div className='bg-white pl-2 pr-3 relative'>
-            <FiHeart className='absolute right-0 text-xl' />
+            {like.findIndex(item => item.id == product.id) == -1 ?
+                <FiHeart className='absolute right-0 text-xl' onClick={() => dispatch(liked(product))} />
+                :
+                <FcLike className='absolute right-0 text-xl' onClick={() => dispatch(dislike(product))} />
+            }
             <img src={product.img} alt="" />
             <div className='pl-1  flex flex-col justify-between h-[120px]'>
                 <h3 className='font-medium mt-1'>{product.title.length > 35 ? product.title.slice(0, 35) + ' ...' : product.title}</h3>
@@ -25,7 +33,7 @@ const Card = (product) => {
                         </>
                     }
                     <div className='flex items-center justify-between pb-1'>
-                        <p className='font-semibold text-xl'>{product.discount ? discount : product.price} сум</p>
+                        <p className='font-semibold text-xl'>{product.discount ? discounted : product.price} сум</p>
                         <div className='bg-[#FEEE00] flex items-center justify-center w-9 h-7 border rounded-lg border-black/30'><BsCart3 className='text-xl' /></div>
                     </div>
                 </div>
