@@ -5,16 +5,17 @@ import Slider from '../../components/Slider'
 import Img1 from '../../assets/photo/aksiya1.png'
 import Img2 from '../../assets/photo/aksiya2.png'
 import Img3 from '../../assets/photo/aksiya3.png'
-// import { useGetSingleCategory } from '../../service/query/useGetSingleCategory'
+import { useGetSingleCategory } from '../../service/query/useGetSingleCategory'
+import Brands from '../../components/Brands'
 
 const Home = () => {
   const { data } = useGetTel()
-  // const { data: komp } = useGetSingleCategory()
+  const { data: komp } = useGetSingleCategory('laptop')
   return (
     <div>
       <Banner />
       <div className='max-w-[1400px] m-auto'>
-        <h2 className='mb-6 font-semibold text-xl'>Смартфоны и планшеты</h2>
+        <h2 className='mb-6 font-semibold text-2xl'>Смартфоны и планшеты</h2>
         <Slider data={data} />
       </div>
       <div className='bg-[#FEEE00] my-8 pb-8'>
@@ -46,7 +47,7 @@ const Home = () => {
         <div className='flex flex-col gap-y-6'>
           <h3 className='text-2xl mb-10 mt-7'>Ноутбуки, планшеты и компьютеры</h3>
           {
-            data?.slice(4, 7).map(item => (
+            komp?.slice(2, 5).map(item => (
               <div className='flex gap-4'>
                 <img className='w-[140px]' src={item.img} alt="" />
                 <div className='w-[250px] flex flex-col justify-between py-2'>
@@ -72,10 +73,23 @@ const Home = () => {
           }
         </div>
       </div>
+
       <div className='max-w-[1400px] my-[88px] m-auto'>
-        <h2 className='mb-6 font-semibold text-xl'>Смартфоны и планшеты</h2>
+        <h2 className='mb-6 font-semibold text-2xl'>Смартфоны и планшеты</h2>
         <Slider data={data} />
       </div>
+      
+      <div className='max-w-[1400px] my-[88px] m-auto'>
+        <h2 className='mb-6 font-semibold text-2xl'>Ноутбуки, планшеты и компьютеры</h2>
+        <Slider data={komp} />
+      </div>
+
+      <div className='max-w-[1400px] my-[88px] m-auto'>
+        <h2 className='mb-6 font-semibold text-2xl'>Популярные бренды</h2>
+        <Brands/>
+      </div>
+
+      
     </div>
   )
 }
