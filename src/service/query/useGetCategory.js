@@ -1,14 +1,14 @@
 import { useQuery } from "@tanstack/react-query";
 import { request } from "../../config/request";
 
-export const UseGetCategory = (name) => {
+export const UseGetCategory = () => {
     // console.log(title);
     return useQuery({
-        queryKey: ['category', name],
+        queryKey: ['category'],
         queryFn: async () => {
             return (
                 request
-            .get(`/${name}`)
+            .get('/category')
             .then(res => res.data)
             )
         }})

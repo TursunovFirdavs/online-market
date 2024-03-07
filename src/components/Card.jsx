@@ -5,6 +5,8 @@ import { BsCart3 } from "react-icons/bs";
 
 
 const Card = (product) => {
+    
+
     const discount = (product.price / 100) * (100 - product.discount)
     console.log(discount);
     return (

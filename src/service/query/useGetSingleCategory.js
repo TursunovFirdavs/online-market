@@ -1,11 +1,11 @@
 import { useQuery } from "@tanstack/react-query";
 import { request } from "../../config/request";
 
-export const useGetSingleCategory = () => {
+export const useGetSingleCategory = (name) => {
     return useQuery({
-        queryKey: ['single'],
+        queryKey: ['single', name],
         queryFn: async () => request
-            .get('/ноутбуки')
+            .get(`/${name}`)
             .then(res => res.data)
         }      
     )

@@ -11,7 +11,7 @@ import { Link } from 'react-router-dom';
 
 const Banner = () => {
     const { data, isLoading } = useGetBanner()
-    const { data: categor,  } = UseGetCategory('category')
+    const { data: categor,  } = UseGetCategory()
     console.log(data);
   return (
     <div className='w-full'>
