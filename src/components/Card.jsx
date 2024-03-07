@@ -1,19 +1,29 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { FiHeart } from "react-icons/fi";
 import { FcLike } from "react-icons/fc";
 import { BsCart3 } from "react-icons/bs";
 import { useDispatch, useSelector } from 'react-redux';
 import { dislike, liked } from '../redux/reducers/like';
+import SingleProductModal from './Single-product-modal';
 
 
 
 const Card = (product) => {
+    const [openDialog, setOpenDialog] = useState(false);
+    const [selectedItem, setSelectedItem] = useState(null);
+
     const {like} = useSelector(state => state.like)
     const dispatch = useDispatch()
     console.log(like);
 
-
     const discounted = (product.price / 100) * (100 - product.discount)
+
+    const openModal = () => {
+        setOpenDialog(true)
+        setSelectedItem({...product, discounted})
+    }
+
+
     // console.log(discount);
     return (
         <div className='bg-white pl-2 pr-3 relative'>
@@ -22,7 +32,7 @@ const Card = (product) => {
                 :
                 <FcLike className='absolute right-0 text-xl' onClick={() => dispatch(dislike(product))} />
             }
-            <img src={product.img} alt="" />
+            <img className='cursor-pointer' onClick={openModal} src={product.img}  alt="" />
             <div className='pl-1  flex flex-col justify-between h-[120px]'>
                 <h3 className='font-medium mt-1'>{product.title.length > 35 ? product.title.slice(0, 35) + ' ...' : product.title}</h3>
                 <div>
@@ -38,6 +48,14 @@ const Card = (product) => {
                     </div>
                 </div>
             </div>
+            <SingleProductModal
+                    isOpen={openDialog}
+                    selectedItem={selectedItem}
+                    handleClose={() => {
+                        setOpenDialog(false);
+                        setSelectedItem({});
+                    }}
+                />
         </div>
     )
 }
