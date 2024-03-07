@@ -4,7 +4,7 @@ const initialState = {
     like: []
 }
 
-export const likeReducer = createSlice({
+const likeReducer = createSlice({
     name: 'like',
     initialState,
     reducers: {

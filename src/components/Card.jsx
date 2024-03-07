@@ -1,14 +1,16 @@
 import React from 'react'
 import { FiHeart } from "react-icons/fi";
 import { BsCart3 } from "react-icons/bs";
+import { useSelector } from 'react-redux';
 
 
 
 const Card = (product) => {
-    
+    const {like} = useSelector(state => state.like)
+    console.log(like);
 
     const discount = (product.price / 100) * (100 - product.discount)
-    console.log(discount);
+    // console.log(discount);
     return (
         <div className='bg-white pl-2 pr-3 relative'>
             <FiHeart className='absolute right-0 text-xl' />

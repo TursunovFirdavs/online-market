@@ -8,7 +8,7 @@ import { Pagination } from 'swiper/modules';
 import Card from './Card';
 
 const Slider = ({data}) => {
-    console.log(data);
+    // console.log(data);
   return (
     <div className='relative'>
         <Swiper
