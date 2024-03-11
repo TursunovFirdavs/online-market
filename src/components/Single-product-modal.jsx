@@ -21,7 +21,7 @@ export default function SingleProductModal(props) {
                         {selectedItem?.discount ? 
                             <>
                                 <div className='flex justify-between'>
-                                    <p className='text-lg font-semibold line-through text-gray-700'>{selectedItem?.price}</p>
+                                    <p className='text-lg font-semibold line-through text-gray-700'>{selectedItem?.price} сум</p>
                                     <p className='w-10 text-sm font-normal flex items-center justify-center px-1 rounded-lg bg-red-600 text-white'>-{selectedItem?.discount}%</p>
                                 </div>
                                 <p className='text-3xl font-bold'>{selectedItem?.discounted} сум</p>

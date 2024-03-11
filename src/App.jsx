@@ -2,8 +2,9 @@ import { Route, Routes } from 'react-router-dom'
 import './App.css'
 import Home from './pages/home/Home'
 import Navbar from './components/Navbar'
-import Card from './pages/cart/Cart'
 import Category from './pages/category/Category'
+import Cart from './pages/cart/Cart'
+import Like from './pages/like/Like'
 
 function App() {
 
@@ -15,8 +16,8 @@ function App() {
       <Routes>
         <Route path='/' element={<Home/>} />
         <Route path='/category/:name' element={<Category/>} />
-        <Route path='/cart' element={<Card/>} />
-        <Route path='/liked' />
+        <Route path='/cart' element={<Cart/>} />
+        <Route path='/liked' element={<Like/>} />
       </Routes>
     </>
   )
