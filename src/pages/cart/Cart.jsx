@@ -16,6 +16,14 @@ const Cart = () => {
 
   const dispatch = useDispatch()
 
+  const totalPrice = cart?.reduce((a,b) => {
+    return a + b.overalPrice
+  },0)
+
+  const totalDiscounted = cart?.reduce((a,b) => {
+    return b.discount ? a + b.overalDiscounted : a + b.overalPrice
+  },0)
+
   const handleRemove = (item) => {
     if(item.productCount > 1){
       dispatch(toggleAmount({type: 'remove', id: item.id}))
@@ -25,17 +33,18 @@ const Cart = () => {
     }
   }
   return (
-    <div className='max-w-[1400px] m-auto'>
+    <div className='max-w-[1400px] m-auto mt-2'>
       <div>
         {cart.length ?
-          <div className='flex justify-between'>
-            <div className='border rounded-lg p-6'>
-              <h2 className='mb-6 font-semibold text-5xl'>В корзине 2 товара</h2>
+          <div className='flex items-start justify-between'>
+            <div className='border rounded-lg px-6 pt-6 pb-2'>
+              <h2 className='mb-5 font-semibold text-5xl'>В корзине {cart.length} товара</h2>
+              <div className='max-h-[495px] overflow-y-auto categry-scroll'>
               {
                 cart?.map(item => (
-                  <div className='flex items-center justify-between w-[850px] border-b-2 py-3'>
+                  <div className='flex items-center justify-between w-[850px] border-b py-3'>
                     <div className='flex gap-2 items-center'>
-                      <img className='w-[150px]' src={item.img} alt="" />
+                      <img className='w-[140px]' src={item.img} alt="" />
                       <div className='flex flex-col gap-5'>
                         <p className='w-[350px] text-lg font-medium'>{item.title}</p>
                         <div className='flex gap-8'>
@@ -47,7 +56,7 @@ const Cart = () => {
                             }
                             <p>В избранное</p>
                           </div>
-                          <div onClick={() => dispatch(removeFromCart(item))} className='flex cursor-pointer items-center gap-1'>
+                          <div onClick={() => dispatch(removeFromCart(item))} className='flex cursor-pointer items-center gap-1 transition duration-250 hover:text-[#DA002B]'>
                             <RiDeleteBin6Line />
                             <p>Удалить</p>
                           </div>
@@ -74,11 +83,35 @@ const Cart = () => {
                   </div>
                 ))
               }
+              </div>
             </div>
-            <div className='w-[475px] border'>
-              {cart?.reduce((a,b) => {
-                return b.discount ? a + b.overalDiscounted : a + b.overalPrice
-              },0)}
+
+            <div className='w-[475px] border p-8 rounded-lg flex flex-col gap-3'>
+              <form className='border border-black overflow-hidden rounded-lg flex justify-between mb-2'>
+                <input className='indent-2 text-lg' type="text" placeholder='Введите промокод' />
+                <button className='bg-[#FEEE00] h-full py-3 px-5 text-md '>Применить</button>
+              </form>
+              <div className='flex justify-between text-lg'>
+                <p className='font-medium'>Стоимость:</p>
+                <p>{totalPrice} сум</p>
+              </div>
+              <div className='flex justify-between text-lg'>
+                <p className='font-medium'>Вы экономите:</p>
+                <p>{totalPrice - totalDiscounted} сум</p>
+              </div>
+              <div className='flex justify-between text-lg'>
+                <p className='font-medium'>Стоимость доставки:</p>
+                <p>0 сум</p>
+              </div>
+              <div className='flex justify-between text-lg'>
+                <p className='font-medium'>Промокод:</p>
+                <p>0 сум</p>
+              </div>
+              <div className='flex justify-between text-3xl mt-3 mb-7 font-semibold'>
+                <p>Итого:</p>
+                <p>{totalDiscounted} сум</p>
+              </div>
+              <button className='bg-[#FEEE00] py-3 font-medium text-xl rounded-lg'>Оформить заказ</button>
             </div>
           </div>
           :
