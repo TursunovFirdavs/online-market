@@ -29,6 +29,11 @@ export default function SingleProductModal(props) {
                             <p className='text-3xl font-bold' >{selectedItem?.price}</p>
                         }
                         <button className='w-full py-1 text-lg font-medium m-auto text-center block mt-6 bg-[#FEEE00]'>В корзину</button>
+                        <div className='w-full text-center flex items-center justify-between bg-gray-100 mt-6'>
+                          <button className='text-3xl pb-1 bg-gray-300 w-[70px]'>-</button>
+                            <p className='text-xl'>1</p>
+                          <button className='text-3xl pb-1 bg-gray-300 w-[70px]'>+</button>
+                        </div>
                     </div>
                 </div>
             </div>

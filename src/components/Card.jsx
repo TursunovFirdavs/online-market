@@ -35,7 +35,7 @@ const Card = (product) => {
             }
             <img className='cursor-pointer' onClick={openModal} src={product.img}  alt="" />
             <div className='pl-1  flex flex-col justify-between h-[120px]'>
-                <h3 className='font-medium mt-1'>{product.title.length > 35 ? product.title.slice(0, 35) + ' ...' : product.title}</h3>
+                <h3 title={product.title} className='font-medium mt-1'>{product.title.length > 32 ? product.title.slice(0, 32) + ' ...' : product.title}</h3>
                 <div>
                     {product.discount && 
                         <>

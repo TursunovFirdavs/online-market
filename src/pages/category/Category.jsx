@@ -37,7 +37,7 @@ const Category = () => {
         break;
       default: setTitle('')
     }
-  }, [])
+  }, [name])
 
   console.log(data);
   console.log(title);
