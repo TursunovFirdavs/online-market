@@ -15,6 +15,7 @@ const cartReducer = createSlice({
                     {
                         ...action.payload,
                         productCount: 1,
+                        overalDiscounted: action.payload.discounted,
                         overalPrice: action.payload.price
                     }
                 ]}
@@ -31,7 +32,8 @@ const cartReducer = createSlice({
                         return {
                             ...item,
                             productCount: item.productCount + 1,
-                            overalPrice: (item.productCount + 1) * item.price
+                            overalPrice: (item.productCount + 1) * item.price,
+                            overalDiscounted: (item.productCount + 1) * item.discounted
                         }
                     }
                     return item
@@ -44,7 +46,8 @@ const cartReducer = createSlice({
                         return {
                             ...item,
                             productCount: item.productCount - 1,
-                            overalPrice: (item.productCount - 1) * item.price
+                            overalPrice: (item.productCount - 1) * item.price,
+                            overalDiscounted: (item.productCount - 1) * item.discounted
                         }
                     }
                     return item

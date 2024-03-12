@@ -14,6 +14,15 @@ const Cart = () => {
   console.log(like);
 
   const dispatch = useDispatch()
+
+  const handleRemove = (item) => {
+    if(item.productCount > 1){
+      dispatch(toggleAmount({type: 'remove', id: item.id}))
+    }
+    else {
+      dispatch(removeFromCart(item))
+    }
+  }
   return (
     <div className='max-w-[1400px] m-auto'>
       <div>
@@ -31,13 +40,13 @@ const Cart = () => {
                         <div className='flex gap-8'>
                           <div className='flex items-center gap-1'>
                             {like.findIndex(items => items.id == item.id) == -1 ?
-                              <FiHeart onClick={() => dispatch(liked(item))} />
+                              <FiHeart className='cursor-pointer' onClick={() => dispatch(liked(item))} />
                               :
-                              <FcLike onClick={() => dispatch(dislike(item))} />
+                              <FcLike className='cursor-pointer' onClick={() => dispatch(dislike(item))} />
                             }
                             <p>В избранное</p>
                           </div>
-                          <div onClick={() => dispatch(removeFromCart(item))} className='flex items-center gap-1'>
+                          <div onClick={() => dispatch(removeFromCart(item))} className='flex cursor-pointer items-center gap-1'>
                             <RiDeleteBin6Line />
                             <p>Удалить</p>
                           </div>
@@ -46,18 +55,18 @@ const Cart = () => {
                     </div>
                     <div className='flex items-center gap-10'>
                       <div className='flex border rounded-lg overflow-hidden items-center'>
-                        <button onClick={() => dispatch(toggleAmount({type: 'remove', id: item.id}))} className='text-2xl bg-gray-100 w-8 pb-[2px]'>-</button>
+                        <button onClick={() => handleRemove(item)} className='text-2xl bg-gray-100 w-8 pb-[2px]'>-</button>
                         <p className='text-md w-10 text-center'>{item.productCount}</p>
                         <button onClick={() => dispatch(toggleAmount({type: 'add', id: item.id}))} className='text-2xl bg-gray-100 w-8 pb-[2px]'>+</button>
                       </div>
-                      <div>
+                      <div className='w-[165px]'>
                         {item.discount ? 
                           <>
-                            <p className='text-lg font-normal line-through text-gray-700'>{item.price} сум</p>
-                            <p className='text-2xl font-medium text-[#DA002B]'>{item.discounted} сум</p>
+                            <p className='text-lg font-normal line-through text-gray-700'>{item.overalPrice} сум</p>
+                            <p className='text-2xl font-medium text-[#DA002B]'>{item.overalDiscounted} сум</p>
                           </>
                           :
-                          <p className='text-2xl font-medium'>{item.price} сум</p>
+                          <p className='text-2xl font-medium'>{item.overalPrice} сум</p>
                         }
                       </div>
                     </div>

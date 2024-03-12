@@ -7,6 +7,7 @@ import { FaRegHeart } from "react-icons/fa6";
 import { BsCart3 } from "react-icons/bs";
 import { Link } from 'react-router-dom';
 import CategoryModal from './Category-modal';
+import { useSelector } from 'react-redux';
 
 
 
@@ -15,6 +16,8 @@ import CategoryModal from './Category-modal';
 const Navbar = () => {
     const [selectedItem, setSelectedItem] = useState({});
     const [openDialog, setOpenDialog] = useState(false);
+    const { cart } = useSelector(state => state.cart)
+
     return (
         <div>
             <nav className='flex items-center px-10 py-5 gap-[55px]'>
@@ -41,7 +44,7 @@ const Navbar = () => {
                     <Link to={'/cart'} className='flex flex-col items-center relative'>
                         <BsCart3 className='text-xl' />
                         <p>Корзина</p>
-                        <div className='absolute top-[-5.8px] right-3 bg-red-600 text-white text-[13px] w-4 h-4 rounded-full flex items-center justify-center'>3</div>
+                        <div className='absolute top-[-5.8px] right-3 bg-red-600 text-white text-[13px] w-4 h-4 rounded-full flex items-center justify-center'>{cart.length}</div>
                     </Link>
                 </div>
 
