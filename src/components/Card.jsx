@@ -5,6 +5,7 @@ import { BsCart3 } from "react-icons/bs";
 import { useDispatch, useSelector } from 'react-redux';
 import { dislike, liked } from '../redux/reducers/like';
 import SingleProductModal from './Single-product-modal';
+import { addToCart } from '../redux/reducers/cart';
 
 
 
@@ -44,7 +45,7 @@ const Card = (product) => {
                     }
                     <div className='flex items-center justify-between pb-1'>
                         <p className='font-semibold text-xl'>{product.discount ? discounted : product.price} сум</p>
-                        <div className='bg-[#FEEE00] flex items-center justify-center w-9 h-7 border rounded-lg border-black/30'><BsCart3 className='text-xl' /></div>
+                        <div onClick={() => dispatch(addToCart({...product, discounted}))} className='bg-[#FEEE00] flex items-center justify-center w-9 h-7 border rounded-lg border-black/30'><BsCart3 className='text-xl' /></div>
                     </div>
                 </div>
             </div>

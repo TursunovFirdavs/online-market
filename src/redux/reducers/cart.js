@@ -11,7 +11,7 @@ const cartReducer = createSlice({
         addToCart: (state, action) => {
             const checked = state.cart.find(item => item.id === action.payload.id)
             if(!checked){
-                return {...state, cart: [state.cart,
+                return {...state, cart: [...state.cart,
                     {
                         ...action.payload,
                         productCount: 1,
