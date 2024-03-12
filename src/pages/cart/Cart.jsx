@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { dislike, liked } from '../../redux/reducers/like';
 import { RiDeleteBin6Line } from "react-icons/ri";
 import { removeFromCart, toggleAmount } from '../../redux/reducers/cart';
+import { Link } from 'react-router-dom';
 
 
 const Cart = () => {
@@ -26,7 +27,7 @@ const Cart = () => {
   return (
     <div className='max-w-[1400px] m-auto'>
       <div>
-        {cart.length &&
+        {cart.length ?
           <div className='flex justify-between'>
             <div className='border rounded-lg p-6'>
               <h2 className='mb-6 font-semibold text-5xl'>В корзине 2 товара</h2>
@@ -74,8 +75,18 @@ const Cart = () => {
                 ))
               }
             </div>
-            <div className='w-[475px] border'></div>
+            <div className='w-[475px] border'>
+              {cart?.reduce((a,b) => {
+                return b.discount ? a + b.overalDiscounted : a + b.overalPrice
+              },0)}
+            </div>
           </div>
+          :
+          <div className='flex flex-col items-center mt-[70px]'>
+                <img src={'https://www.krosfitsports.com/public/empty-cart.gif'} alt="" />
+                <h3 className='text-4xl mb-4 text-gray-700 mt-5 font-bold'>Ваша корзина пуста</h3>
+                <Link to={'/'} className=' bg-[#FEEE00] rounded-lg px-3 py-1' >Покупки сейчас</Link>
+            </div>
         }
       </div>
     </div>
