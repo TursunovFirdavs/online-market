@@ -4,6 +4,7 @@ import { FcLike } from "react-icons/fc";
 import { useDispatch, useSelector } from 'react-redux'
 import { dislike, liked } from '../../redux/reducers/like';
 import { RiDeleteBin6Line } from "react-icons/ri";
+import { removeFromCart, toggleAmount } from '../../redux/reducers/cart';
 
 
 const Cart = () => {
@@ -36,7 +37,7 @@ const Cart = () => {
                             }
                             <p>В избранное</p>
                           </div>
-                          <div className='flex items-center gap-1'>
+                          <div onClick={() => dispatch(removeFromCart(item))} className='flex items-center gap-1'>
                             <RiDeleteBin6Line />
                             <p>Удалить</p>
                           </div>
@@ -45,9 +46,9 @@ const Cart = () => {
                     </div>
                     <div className='flex items-center gap-10'>
                       <div className='flex border rounded-lg overflow-hidden items-center'>
-                        <button className='text-2xl bg-gray-100 w-8 pb-[2px]'>-</button>
-                        <p className='text-md w-10 text-center'>1</p>
-                        <button className='text-2xl bg-gray-100 w-8 pb-[2px]'>+</button>
+                        <button onClick={() => dispatch(toggleAmount({type: 'remove', id: item.id}))} className='text-2xl bg-gray-100 w-8 pb-[2px]'>-</button>
+                        <p className='text-md w-10 text-center'>{item.productCount}</p>
+                        <button onClick={() => dispatch(toggleAmount({type: 'add', id: item.id}))} className='text-2xl bg-gray-100 w-8 pb-[2px]'>+</button>
                       </div>
                       <div>
                         {item.discount ? 

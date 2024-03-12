@@ -23,10 +23,38 @@ const cartReducer = createSlice({
         removeFromCart: (state, action) => {
             const checked = state.cart.filter(item => item.id !== action.payload.id)
             return {...state, cart: checked}
+        },
+        toggleAmount: (state, action) => {
+            if(action.payload.type == 'add'){
+                const newCart = state.cart.map(item => {
+                    if(item.id === action.payload.id) {
+                        return {
+                            ...item,
+                            productCount: item.productCount + 1,
+                            overalPrice: (item.productCount + 1) * item.price
+                        }
+                    }
+                    return item
+                })
+                return {...state, cart: newCart}
+            }
+            else if(action.payload.type == 'remove') {
+                const newCart = state.cart.map(item => {
+                    if(item.id === action.payload.id) {
+                        return {
+                            ...item,
+                            productCount: item.productCount - 1,
+                            overalPrice: (item.productCount - 1) * item.price
+                        }
+                    }
+                    return item
+                })
+                return {...state, cart: newCart}
+            }
         }
     }
 })
 
 export default cartReducer.reducer
 
-export const { addToCart, removeFromCart } = cartReducer.actions
+export const { addToCart, removeFromCart, toggleAmount } = cartReducer.actions
