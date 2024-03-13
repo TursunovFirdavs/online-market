@@ -88,7 +88,7 @@ const Cart = () => {
 
             <div className='w-[475px] border p-8 rounded-lg flex flex-col gap-3'>
               <form className='border border-black overflow-hidden rounded-lg flex justify-between mb-2'>
-                <input className='indent-2 text-lg' type="text" placeholder='Введите промокод' />
+                <input className='indent-2 text-lg flex-1 outline-none' type="text" placeholder='Введите промокод' />
                 <button className='bg-[#FEEE00] h-full py-3 px-5 text-md '>Применить</button>
               </form>
               <div className='flex justify-between text-lg'>
