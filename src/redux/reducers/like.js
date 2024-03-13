@@ -1,6 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { loadState } from "../storage/storage";
 
-const initialState = {
+const initialState = loadState('like') || {
     like: []
 }
 
