@@ -15,7 +15,7 @@ const Card = (product) => {
 
     const {like} = useSelector(state => state.like)
     const dispatch = useDispatch()
-    console.log(like);
+    // console.log(like);
 
     const discounted = (product.price / 100) * (100 - product.discount)
 

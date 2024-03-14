@@ -12,7 +12,7 @@ const likeReducer = createSlice({
         liked: (state, action) => {
             const checked = state.like.find(item => item.id === action.payload.id)
             if(!checked){
-                return {...state, like: [...state.like, action.payload]}
+                return {...state, like: [action.payload, ...state.like]}
             }
             return state
         },

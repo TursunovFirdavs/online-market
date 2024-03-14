@@ -43,7 +43,7 @@ const Cart = () => {
               {
                 cart?.map(item => (
                   <div className='flex items-center justify-between w-[850px] border-b py-3'>
-                    <div className='flex gap-2 items-center'>
+                    <div className='flex gap-4 items-center'>
                       <img className='w-[140px]' src={item.img} alt="" />
                       <div className='flex flex-col gap-5'>
                         <p className='w-[350px] text-lg font-medium'>{item.title}</p>

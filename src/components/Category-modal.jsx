@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom'
 
 export default function CategoryModal(props) {
 //   let [isOpen, setIsOpen] = useState(true)
-  const {isOpen, selectedItem, handleClose} = props
+  const {isOpen, handleClose} = props
   const { data } = UseGetCategory()
 
 

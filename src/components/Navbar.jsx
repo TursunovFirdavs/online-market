@@ -8,27 +8,41 @@ import { BsCart3 } from "react-icons/bs";
 import { Link } from 'react-router-dom';
 import CategoryModal from './Category-modal';
 import { useSelector } from 'react-redux';
+import { useGetSingleCategory } from '../service/query/useGetSingleCategory'
+import SingleProductModal from './Single-product-modal';
 
 
 
 
 
 const Navbar = () => {
+    const[search, setSearch] = useState('')
     const [selectedItem, setSelectedItem] = useState({});
-    const [openDialog, setOpenDialog] = useState(false);
+    const [openCategoryDialog, setOpenCategoryDialog] = useState(false);
     const { cart } = useSelector(state => state.cart)
+
+    const { data } = useGetSingleCategory('all')
+    console.log(search);
+
+    const filteredData = data?.filter(item =>
+        item.title.toLowerCase().includes(search.toLowerCase())
+    );
+
+    const handleSearchElement = (item) => {
+
+    }
 
     return (
         <div>
             <nav className='flex items-center px-10 py-5 gap-[55px]'>
                 <Link to={'/'}><img src={Logo} alt="" className='px-6' /></Link>
                 <div className='flex gap-[32px] flex-1'>
-                    <div onClick={() => setOpenDialog(true)} className='flex items-center gap-1 cursor-pointer bg-[#FEEE00] py-2  pl-3 pr-10 '>
+                    <div onClick={() => setOpenCategoryDialog(true)} className='flex items-center gap-1 cursor-pointer bg-[#FEEE00] py-2  pl-3 pr-10 '>
                         <IoIosMenu className='text-xl' />
                         <p className='text-lg'>Каталог</p>
                     </div>
                     <form className='flex items-center justify-between border border-[#857372] px-4 flex-1'>
-                        <input type="text" placeholder='Поиск' className='w-full outline-none h-full' />
+                        <input onChange={(e) => setSearch(e.target.value)} type="text" placeholder='Поиск' className='w-full outline-none h-full' />
                         <IoSearch />
                     </form>
                 </div>
@@ -48,14 +62,34 @@ const Navbar = () => {
                     </Link>
                 </div>
 
+                {
+                    search.length > 2 && 
+                        <div className='absolute w-[770px] border top-[70px] rounded-lg overflow-hidden p-3 left-[404px] z-10 flex flex-col gap-3 bg-white'>
+                            {filteredData.map(item => 
+                                <Link onClick={() => handleSearchElement(item)} className='w-full border-b flex items-center gap-3'>
+                                    <img className='w-[50px]' src={item.img} alt="" />
+                                    <h1 className=''>{item.title}</h1>
+                                </Link>
+                            )}
+                        </div>
+                }
+
                 <CategoryModal
+                    isOpen={openCategoryDialog}
+                    selectedItem={selectedItem}
+                    handleClose={() => {
+                        setOpenCategoryDialog(false);
+                        setSelectedItem({});
+                    }}
+                />
+                {/* <SingleProductModal
                     isOpen={openDialog}
                     selectedItem={selectedItem}
                     handleClose={() => {
                         setOpenDialog(false);
                         setSelectedItem({});
                     }}
-                />
+                /> */}
             </nav>
         </div>
     )

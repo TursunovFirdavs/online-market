@@ -7,12 +7,12 @@ import { addToCart, removeFromCart, toggleAmount } from '../redux/reducers/cart'
 export default function SingleProductModal(props) {
   const { isOpen, selectedItem, handleClose } = props
   const { cart } = useSelector(state => state.cart)
-  console.log(cart);
+  // console.log(cart);
 
   const dispatch = useDispatch()
 
   const handleRemove = (item) => {
-    console.log(item);
+    // console.log(item);
     if(item.productCount > 1){
       dispatch(toggleAmount({type: 'remove', id: item.id}))
     }
