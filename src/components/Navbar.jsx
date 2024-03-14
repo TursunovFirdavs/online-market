@@ -19,6 +19,7 @@ const Navbar = () => {
     const[search, setSearch] = useState('')
     const [selectedItem, setSelectedItem] = useState({});
     const [openCategoryDialog, setOpenCategoryDialog] = useState(false);
+    const [openDialog, setOpenDialog] = useState(false)
     const { cart } = useSelector(state => state.cart)
 
     const { data } = useGetSingleCategory('all')
@@ -29,7 +30,9 @@ const Navbar = () => {
     );
 
     const handleSearchElement = (item) => {
-
+        setOpenDialog(true)
+        setSelectedItem(item)
+        setSearch('')
     }
 
     return (
@@ -42,7 +45,7 @@ const Navbar = () => {
                         <p className='text-lg'>Каталог</p>
                     </div>
                     <form className='flex items-center justify-between border border-[#857372] px-4 flex-1'>
-                        <input onChange={(e) => setSearch(e.target.value)} type="text" placeholder='Поиск' className='w-full outline-none h-full' />
+                        <input value={search} onChange={(e) => setSearch(e.target.value)} type="text" placeholder='Поиск' className='w-full outline-none h-full' />
                         <IoSearch />
                     </form>
                 </div>
@@ -79,17 +82,17 @@ const Navbar = () => {
                     selectedItem={selectedItem}
                     handleClose={() => {
                         setOpenCategoryDialog(false);
-                        setSelectedItem({});
+                        // setSelectedItem({});
                     }}
                 />
-                {/* <SingleProductModal
+                <SingleProductModal
                     isOpen={openDialog}
                     selectedItem={selectedItem}
                     handleClose={() => {
                         setOpenDialog(false);
                         setSelectedItem({});
                     }}
-                /> */}
+                />
             </nav>
         </div>
     )
