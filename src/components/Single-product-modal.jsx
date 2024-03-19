@@ -12,7 +12,6 @@ export default function SingleProductModal(props) {
   const dispatch = useDispatch()
 
   const handleRemove = (item) => {
-    // console.log(item);
     if(item.productCount > 1){
       dispatch(toggleAmount({type: 'remove', id: item.id}))
     }
